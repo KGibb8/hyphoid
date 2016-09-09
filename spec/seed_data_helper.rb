@@ -1,5 +1,6 @@
 
 require './models/player'
+require './models/location'
 require './models/mycelium'
 
 module SeedData
@@ -17,6 +18,18 @@ module SeedData
       # Mycelia
       @mycelium1 = Mycelium.create(carbon: 100, sugars: 100, phosphates: 100, nitrates: 100)
       @mycelium2 = Mycelium.create(carbon: 100, sugars: 100, phosphates: 100, nitrates: 100)
+
+      # Locations in a 5x5 grid
+
+      x_grid = "A B C D E".split
+      y_grid = "1 2 3 4 5".split
+
+      x_grid.each do |x|
+        y_grid.each do |y|
+          instance_variable_set("@#{x.downcase}#{y}", Location.create(x_position: x, y_position: y))
+        end
+      end
+      binding.pry
 
       @player1.mycelia << @mycelium1
       @player1.mycelia << @mycelium2

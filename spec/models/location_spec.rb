@@ -7,13 +7,13 @@ require 'pry'
 
 ActiveRecord::Base.establish_connection YAML.load_file('config/database.yml')["test"]
 
-describe Mycelium do
+describe Location do
 
   before do
     extend SeedData
   end
 
-  it "should occupy a location"
+
 
   after do
     ActiveRecord::Base.connection.close

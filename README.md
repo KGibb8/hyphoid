@@ -1,5 +1,7 @@
 # Hyphoid
 
+A resource-based mining game set grid-map
+
 Based on some of my favourite strategy games such as Tribal Wars, Dungeon Keeper, Age of Empires and Civilisation and encompassing a
 passion for ecology and better understanding and appreciating the Earth's ecosystems, particularly the role of mycorrhizal
 fungi. The aim of the game is to build subsoil colonies and mine nutrients from these mycelial hubs, connect with Trees to

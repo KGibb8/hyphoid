@@ -7,7 +7,7 @@ require './models/spore'
 
 class Mycelium < ActiveRecord::Base
   belongs_to :player
-  # belongs_to :location
+  has_one :location
   has_many :hypha
   has_many :mushrooms
   has_many :spores, through: :mushrooms
