@@ -24,10 +24,12 @@ ActiveRecord::Schema.define(version: 20160909135441) do
 
   create_table "mycelia", force: :cascade do |t|
     t.integer "player_id"
+    t.integer "mother_id"
     t.integer "carbon"
     t.integer "nitrates"
     t.integer "proteins"
     t.integer "sugars"
+    t.index ["mother_id"], name: "index_mycelia_on_mother_id", using: :btree
     t.index ["player_id"], name: "index_mycelia_on_player_id", using: :btree
   end
 

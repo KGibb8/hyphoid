@@ -13,10 +13,11 @@ describe Location do
     extend SeedData
   end
 
-  it "should not occur more than once in all mycelia" do
-
+  it "should not contain more than one mycelium" do
+    @b4.update(mycelium: @mycelium2)
+    expect(@b4.errors.messages.keys).to include(:mycelium)
+    expect(@b4.errors.messages[:mycelium]).equal?(["A location cannot contain more than one mycelium"])
   end
-
 
   after do
     ActiveRecord::Base.connection.close

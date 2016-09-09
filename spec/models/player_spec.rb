@@ -31,6 +31,10 @@ describe Player do
     end
   end
 
+  context "more than one mycelium" do
+    it "should know " do
+  end
+
   after do
     ActiveRecord::Base.connection.close
   end

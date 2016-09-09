@@ -8,6 +8,8 @@ require 'pry'
 
 class Mycelium < ActiveRecord::Base
   belongs_to :player
+  belongs_to :mother, class_name: "Mycelium", foreign_key: :mother_id, inverse_of: :children
+  has_many :children, class_name: "Mycelium", foreign_key: :mother_id, inverse_of: :mother
   has_one :location
   has_many :hypha
   has_many :mushrooms

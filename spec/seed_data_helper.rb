@@ -17,9 +17,10 @@ module SeedData
       @player2 = Player.create(name: "Dendrophile")
 
       # Mycelia
+      # Can we have resources initialize as a base minimum?
       @mycelium1 = Mycelium.create(carbon: 100, sugars: 100, proteins: 100, nitrates: 100)
       @mycelium2 = Mycelium.create(carbon: 100, sugars: 100, proteins: 100, nitrates: 100)
-
+      @mycelium3 = @mycelium1.children.create(carbon: 100, sugars: 100, proteins: 100, nitrates: 100)
       # Locations in a 5x5 grid
 
       x_grid = "A B C D E".split
@@ -31,8 +32,12 @@ module SeedData
         end
       end
 
+      # Sets location of mycelium
       @b4.update(mycelium: @mycelium1)
+      @a2.mycelium = @mycelium3
+      @a2.save
 
+      # Associates mycelia with Player
       @player1.mycelia << @mycelium1
       @player1.mycelia << @mycelium2
 
