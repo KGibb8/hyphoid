@@ -8,6 +8,7 @@ module SeedData
   def self.extended(object)
     object.instance_exec do
 
+      Location.destroy_all
       Mycelium.destroy_all
       Player.destroy_all
 
@@ -16,8 +17,8 @@ module SeedData
       @player2 = Player.create(name: "Dendrophile")
 
       # Mycelia
-      @mycelium1 = Mycelium.create(carbon: 100, sugars: 100, phosphates: 100, nitrates: 100)
-      @mycelium2 = Mycelium.create(carbon: 100, sugars: 100, phosphates: 100, nitrates: 100)
+      @mycelium1 = Mycelium.create(carbon: 100, sugars: 100, proteins: 100, nitrates: 100)
+      @mycelium2 = Mycelium.create(carbon: 100, sugars: 100, proteins: 100, nitrates: 100)
 
       # Locations in a 5x5 grid
 
@@ -29,7 +30,8 @@ module SeedData
           instance_variable_set("@#{x.downcase}#{y}", Location.create(x_position: x, y_position: y))
         end
       end
-      binding.pry
+
+      @b4.update(mycelium: @mycelium1)
 
       @player1.mycelia << @mycelium1
       @player1.mycelia << @mycelium2

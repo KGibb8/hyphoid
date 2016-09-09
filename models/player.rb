@@ -8,7 +8,7 @@ class Player < ActiveRecord::Base
     self.mycelia.each do |mycelium|
       resources[:carbon] += mycelium.carbon
       resources[:sugars] += mycelium.sugars
-      resources[:phosphates] += mycelium.phosphates
+      resources[:proteins] += mycelium.proteins
       resources[:nitrates] += mycelium.nitrates
     end
     resources

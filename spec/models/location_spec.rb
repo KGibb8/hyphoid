@@ -13,6 +13,9 @@ describe Location do
     extend SeedData
   end
 
+  it "should not occur more than once in all mycelia" do
+
+  end
 
 
   after do

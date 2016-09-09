@@ -78,7 +78,7 @@ y-position
 
 # Stores resources so must have a store for each resource
 
-carbon sugar phosphates nitrates
+carbon sugar proteins nitrates
 
 - first organism, first model to be created and spec'ed
 - has a "Find Neighbours" method which will allow allow for symbiosis between mycelia & neighbouring tree --

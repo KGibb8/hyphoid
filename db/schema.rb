@@ -16,15 +16,17 @@ ActiveRecord::Schema.define(version: 20160909135441) do
   enable_extension "plpgsql"
 
   create_table "locations", force: :cascade do |t|
-    t.string "x_position"
-    t.string "y_position"
+    t.integer "mycelium_id"
+    t.string  "x_position"
+    t.string  "y_position"
+    t.index ["mycelium_id"], name: "index_locations_on_mycelium_id", using: :btree
   end
 
   create_table "mycelia", force: :cascade do |t|
     t.integer "player_id"
     t.integer "carbon"
     t.integer "nitrates"
-    t.integer "phosphates"
+    t.integer "proteins"
     t.integer "sugars"
     t.index ["player_id"], name: "index_mycelia_on_player_id", using: :btree
   end

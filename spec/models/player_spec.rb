@@ -23,11 +23,11 @@ describe Player do
 
   context "Viewing Resources --> " do
     it "should be able to view all mycelia and their relative resource stock" do
-      expect(@player1.all_resources).to eq(carbon: 200, sugars: 200, phosphates: 200, nitrates: 200)
+      expect(@player1.all_resources).to eq(carbon: 200, sugars: 200, proteins: 200, nitrates: 200)
     end
 
     it "should be able to select individual mycelia and view their localised resource stock" do
-      expect(@player1.mycelia.find_by(id: @mycelium1.id).resources).to eq(carbon: 100, sugars: 100, phosphates: 100, nitrates: 100)
+      expect(@player1.mycelia.find_by(id: @mycelium1.id).resources).to eq(carbon: 100, sugars: 100, proteins: 100, nitrates: 100)
     end
   end
 

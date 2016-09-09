@@ -3,6 +3,7 @@
 require './models/hyphae'
 require './models/mushroom'
 require './models/spore'
+require 'pry'
 # require './models/request'
 
 class Mycelium < ActiveRecord::Base
@@ -12,9 +13,18 @@ class Mycelium < ActiveRecord::Base
   has_many :mushrooms
   has_many :spores, through: :mushrooms
   # has_many :requests
+  validate :singular
 
   def resources
-    {carbon: self.carbon, sugars: self.sugars, phosphates: self.phosphates, nitrates: self.nitrates}
+    {carbon: self.carbon, sugars: self.sugars, proteins: self.proteins, nitrates: self.nitrates}
+  end
+
+  private
+
+  def singular
+    unless self.location.nil?
+      self.errors.add(:location, "A Mycelium cannot occupy more than one location")
+    end
   end
 
 end

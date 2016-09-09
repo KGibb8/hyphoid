@@ -4,7 +4,7 @@ class CreateMycelium < ActiveRecord::Migration[5.0]
       t.references :player, foreign_key: true
       t.integer :carbon
       t.integer :nitrates
-      t.integer :phosphates
+      t.integer :proteins
       t.integer :sugars
     end
   end
