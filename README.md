@@ -1,9 +1,10 @@
 # Hyphoid
 
-Based on some of my favourite strategy games such as Dungeon Keeper, Age of Empires and Civilisation and encompassing a 
-passion for ecology and better understanding and appreciating the Earth's ecosystems. Resource extraction & nutrient mining.
+Based on some of my favourite strategy games such as Dungeon Keeper, Age of Empires and Civilisation and encompassing a
+passion for ecology and better understanding and appreciating the Earth's ecosystems, particularly the role of mycorrhizal
+fungi. Resource extraction & nutrient mining.
 
-# Built using Active Record &amp; Rails. 
+# Built using Active Record &amp; Rails.
 
 
 ### Project Requirements ###
@@ -146,5 +147,3 @@ _____________________________________
 # Answers
 
 - ON A SMALL SCALE, TURN BASED, RESOURCES ORIGINATE IN THE MYCELIA RELATIVE TO THE AMOUNT OF HYPHAE AND PERCENTAGE CHANCE OF DISCOVERING NUTRIENTS
-
-
