@@ -1,8 +1,9 @@
 # Hyphoid
 
-Based on some of my favourite strategy games such as Dungeon Keeper, Age of Empires and Civilisation and encompassing a
+Based on some of my favourite strategy games such as Tribal Wars, Dungeon Keeper, Age of Empires and Civilisation and encompassing a
 passion for ecology and better understanding and appreciating the Earth's ecosystems, particularly the role of mycorrhizal
-fungi. Resource extraction & nutrient mining.
+fungi. The aim of the game is to build subsoil colonies and mine nutrients from these mycelial hubs, connect with Trees to
+access normally inaccessible resources and connect all the trees in the forest.
 
 # Built using Active Record &amp; Rails.
 
@@ -30,7 +31,6 @@ Single player - Could be turned into a multiplayer game with a many-to-many rela
 
 # Player
 has_many :mycelia
-
 name:
 
 # Level
@@ -73,6 +73,10 @@ y-position
 - has_many :mushrooms
 - has_many :spores, through :mushrooms
 - has_many :requests
+
+# Stores resources so must have a store for each resource
+
+carbon sugar phosphates nitrates
 
 - first organism, first model to be created and spec'ed
 - has a "Find Neighbours" method which will allow allow for symbiosis between mycelia & neighbouring tree --
