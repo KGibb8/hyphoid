@@ -7,6 +7,11 @@ passion for ecology and better understanding and appreciating the Earth's ecosys
 fungi. The aim of the game is to build subsoil colonies and mine nutrients from these mycelial hubs, connect with Trees to
 access normally inaccessible resources and connect all the trees in the forest.
 
+
+<p align="center">
+<img src="http://images.universityherald.com/data/images/full/5277/mycorrhizal-fungi.jpg" width="350"/>
+</p>
+
 # Built using Active Record &amp; Rails.
 
 
@@ -51,20 +56,6 @@ has_one :tree
 
 - Validation - A location and only have one mycelia or tree.
 - Positions could be like a chess board, or an incrementing number on a grid. e.g.
-
-  |_A_|_B_|_C_|_D_|_E_|_F_|_G_|
-1 |   |   |   |   |   |   |   |
-  |___|___|___|___|___|___|___|
-2 |   |   |   |   |   |   |   |
-  |___|___|___|___|___|___|___|
-3 |   |   |   |   |   |   |   |
-  |___|___|___|___|___|___|___|
-4 |   |   |   |   |   |   |   |
-  |___|___|___|___|___|___|___|
-5 |   |   |   |   |   |   |   |
-  |___|___|___|___|___|___|___|
-6 |   |   |   |   |   |   |   |
-  |___|___|___|___|___|___|___|
 
 x-position
 y-position
@@ -118,23 +109,9 @@ To expand into new territory upon release of spores a chance element is introduc
 
 # Grid based Game
 
-T = Tree
-SM = Starting Mycelium
-_____________________________________
-|  |  |  |  |  |  |  |  |  |  | T|  |
-|__|__|__|__|__|__|__|__|__|__|__|__|
-|  | T|  |  |  | T|  |  | T|  |  |  |
-|__|__|__|__|__|__|__|__|__|__|__|__|
-|  |  |  |  |  |  |  |  |  |  |  |  |
-|__|__|__|__|__|__|__|__|__|__|__|__|
-|  | T|  | T|  |SM|  | T|  |  |  |  |
-|__|__|__|__|__|__|__|__|__|__|__|__|
-|  |  |  |  |  |  |  |  |  |  |  |  |
-|__|__|__|__|__|__|__|__|__|__|__|__|
-|  |  | T|  |  | T|  |  |  |  |  |  |
-|__|__|__|__|__|__|__|__|__|__|__|__|
-| T|  |  |  |  |  |  | T|  | T|  |  |
-|__|__|__|__|__|__|__|__|__|__|__|__|
+<p align="center">
+<img src="https://s-media-cache-ak0.pinimg.com/236x/d7/47/33/d747337b43c19140c993e08d7c88fb50.jpg"/>
+</p>
 
 
 # Variables:
