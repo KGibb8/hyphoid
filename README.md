@@ -9,7 +9,7 @@ access normally inaccessible resources and connect all the trees in the forest.
 
 
 <p align="center">
-<img src="http://images.universityherald.com/data/images/full/5277/mycorrhizal-fungi.jpg" width="350"/>
+<img src="http://images.universityherald.com/data/images/full/5277/mycorrhizal-fungi.jpg" width="700"/>
 </p>
 
 # Built using Active Record &amp; Rails.
