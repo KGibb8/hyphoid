@@ -35,7 +35,6 @@ describe Mycelium do
     end
 
     it "should know the location of it's child/mother on the grid" do
-      binding.pry
       expect(@mycelium3.mother.location).to eq(@b4)
       expect(@mycelium1.children.first.location).to eq(@a2)
     end

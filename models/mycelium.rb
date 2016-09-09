@@ -1,5 +1,5 @@
 
-# require './models/location'
+require './models/location'
 require './models/hyphae'
 require './models/mushroom'
 require './models/spore'
