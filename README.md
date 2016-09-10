@@ -2,17 +2,33 @@
 
 A resource-based mining game set on a grid
 
-Based on some of my favourite strategy games such as Tribal Wars, Dungeon Keeper, Age of Empires and Civilisation and encompassing a
-passion for ecology and better understanding and appreciating the Earth's ecosystems, particularly the role of mycorrhizal
-fungi. The aim of the game is to build subsoil colonies and mine nutrients from these mycelial hubs, connect with Trees to
-access normally inaccessible resources and connect all the trees in the forest.
-
+The idea for the game is based on some of my favourite computer-based strategy games such as Tribal Wars, Dungeon Keeper, Age of Empires and Civilisation and board games such as Pandemic. The aim is to encompass my passion for ecology with encouraging others to better understanding and appreciating the Earth's ecosystems, especially the role of mycorrhizal fungi. The aim of the game is to build subsoil colonies and mine nutrients from these mycelial hubs, connect with Trees to access normally inaccessible resources and connect all the trees in the forest.
 
 <p align="center">
   <img src="http://images.universityherald.com/data/images/full/5277/mycorrhizal-fungi.jpg" width="700"/>
 </p>
 
 # Built using Active Record &amp; Rails
+
+### Player Types ###
+
+- At the start of the game, each player can choose a Fungus-type : Mycorrhizae or Parasite.
+
+# Mycorrhizae
+
+For a Mycorrhizae, the aim of the game is to link together all the trees on the grid. This is achieved by mining resources using Hyphae, collecting enough to produce a Mushroom with a time-stamp on the mushroom to release spores. Released spores will land randomly within a 5x5 grid relative to the mother's original location. Mycelia can connect with Trees by becoming an immediate neighbour (within the 3x3 gridspace surrounding an individual tree)
+
+Players who choose Mycorrhizae can work together to form a long chain and cooperate to share nutrients, send messages to eachother but they cannot share special abilities such as "Protection from Pathogens".
+
+# Parasites
+
+For a Parasite, the aim of the game is to sabotage the Mycorrhizae's attempts to connect with every tree. Parasites can take various forms and can work together through messages to target specific Mycorrhizae. Parasite types include Tree parasites and Fungi parasites. Fungus parasites such as <a href="">Asterophora parasitica</a> or </a href="https://en.wikipedia.org/wiki/Gomphidius_roseus">Gomphidius roseus</a> directly attack mycelia when their spores land either on or within the 3x3 landscape surrounding the target opponent. Tree parasites such as <a href="">Armillaria Mellea</a> or <a href="Pholiota squarrosa">Pholiota sqarrosa</a> directly attack Trees and act as a drain on Mycorrhizae, hindering their ability to expand and slowly destroying the Trees as permanent resources.
+
+# Combat
+
+This is where things start to enter the realm of fantasy.
+
+Combat can occur between a Mycorrhizae and a Parasite either when a Fungus parasite infects a mycorrhizal host, or with the Tree as a battleground. Within the scope of a Tree-based battle, a system needs to be designed to allow for either the Parasite or the Mycorrhizae to be evicted from the Tree after a war of attrition. This could be decided using the turn-based system. If a parasite wins, they are able to draw the remaining nutrients from the tree to produce mushrooms and release further spores.
 
 
 ### Project Requirements ###
