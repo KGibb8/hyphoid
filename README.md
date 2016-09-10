@@ -201,7 +201,7 @@ To expand into new territory upon release of spores a chance element is introduc
 # Grid based Game
 
 <p align="center">
-<img src="https://s-media-cache-ak0.pinimg.com/236x/d7/47/33/d747337b43c19140c993e08d7c88fb50.jpg"/>
+<img src="https://raw.githubusercontent.com/KGibb8/hyphoid/84115523dc27e4b1e0cb84e1fe7af597172ac9c2/images/grid_fun.jpg"/>
 </p>
 
 
