@@ -34,11 +34,22 @@ In the long run, a double stack grid system would work. Each "location" contains
 
 <table>
   <th colspan=3>
-    # Relationships & Models:
+    Relationships & Models:
   </th>
   <tr>
     <td>
-      # Player
+      Model Name
+    </td>
+    <td>
+      Relationships
+    </td>
+    <td>
+      Accessors
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <b>Player</b>
     </td>
     <td>
       has_many :player_sessions
@@ -50,7 +61,7 @@ In the long run, a double stack grid system would work. Each "location" contains
   </tr>
   <tr>
     <td>
-      # PlayerSession    
+      <b>PlayerSession</b>    
     </td>
     <td>
       belongs_to :game_session
@@ -61,7 +72,7 @@ In the long run, a double stack grid system would work. Each "location" contains
   </tr>
   <tr>
     <td>
-      # GameSession
+      <b>GameSession</b>
     </td>
     <td>
       has_many :player_sessions
@@ -73,7 +84,7 @@ In the long run, a double stack grid system would work. Each "location" contains
   </tr>
   <tr>
     <td>
-      # Game
+      <b>Game</b>
     </td>
     <td>
       has_many :player_sessions
@@ -83,7 +94,7 @@ In the long run, a double stack grid system would work. Each "location" contains
   </tr>
   <tr>
     <td>
-    # Location
+      <b>Location</b>
     </td>
     <td>
       belongs_to :game_session
@@ -97,7 +108,7 @@ In the long run, a double stack grid system would work. Each "location" contains
   </tr>
   <tr>
     <td>
-      # Mycelium
+      <b>Mycelium</b>
     </td>
     <td>
       belongs_to :player
@@ -108,7 +119,6 @@ In the long run, a double stack grid system would work. Each "location" contains
       has_many :mushrooms
       has_many :spores, through: :mushrooms
       has_many :requests
-
     </td>
     <td>
       :carbon
@@ -119,7 +129,7 @@ In the long run, a double stack grid system would work. Each "location" contains
   </tr>
   <tr>
     <td>
-      # Hyphae
+      <b>Hyphae</b>
     </td>
     <td>
       belongs_to :mycelium
@@ -129,7 +139,7 @@ In the long run, a double stack grid system would work. Each "location" contains
   </tr>
   <tr>
     <td>
-      # Mushroom
+      <b>Mushroom</b>
     </td>
     <td>
       belongs_to :mycelium
@@ -140,7 +150,7 @@ In the long run, a double stack grid system would work. Each "location" contains
   </tr>
   <tr>
     <td>
-      # Tree
+      <b>Tree</b>
     </td>
     <td>
       belongs_to :location
@@ -151,7 +161,7 @@ In the long run, a double stack grid system would work. Each "location" contains
   </tr>
   <tr>
     <td>
-      # Request
+      <b>Request</b>
     </td>
     <td>
       belongs_to :tree
