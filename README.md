@@ -33,7 +33,7 @@ GAME GOAL: Mine all the resources OR connect all the trees OR defeat all competi
 In the long run, a double stack grid system would work. Each "location" contains its own smaller grid for hyphae moving. They can also move between locations if the x-position + y-position allow.
 
 <table>
-  <th>
+  <th colspan=3>
     # Relationships & Models:
   </th>
   <tr>
