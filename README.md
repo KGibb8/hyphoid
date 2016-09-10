@@ -1,6 +1,6 @@
 # Hyphoid
 
-A resource-based mining game set grid-map
+A resource-based mining game set on a grid
 
 Based on some of my favourite strategy games such as Tribal Wars, Dungeon Keeper, Age of Empires and Civilisation and encompassing a
 passion for ecology and better understanding and appreciating the Earth's ecosystems, particularly the role of mycorrhizal
@@ -32,71 +32,136 @@ GAME GOAL: Mine all the resources OR connect all the trees OR defeat all competi
 
 In the long run, a double stack grid system would work. Each "location" contains its own smaller grid for hyphae moving. They can also move between locations if the x-position + y-position allow.
 
-# Relationships & Models:
+<table>
+  <th>
+    # Relationships & Models:
+  </th>
+  <tr>
+    <td>
+      # Player
+    </td>
+    <td>
+      has_many :player_sessions
+      has_many :mycelia
+    </td>
+    <td>
+      :name
+    </td>
+  </tr>
+  <tr>
+    <td>
+      # PlayerSession    
+    </td>
+    <td>
+      belongs_to :game_session
+      belongs_to :player
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      # GameSession
+    </td>
+    <td>
+      has_many :player_sessions
+      has_many :locations
+      belongs_to :game
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      # Game
+    </td>
+    <td>
+      has_many :player_sessions
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+    # Location
+    </td>
+    <td>
+      belongs_to :game_session
+      has_one :mycelia
+      has_one :tree
+    </td>
+    <td>
+      :x-position
+      :y-position
+    </td>
+  </tr>
+  <tr>
+    <td>
+      # Mycelium
+    </td>
+    <td>
+      belongs_to :player
+      belongs_to :mother, class_name: "Mycelium", foreign_key: :mother_id, inverse_of: :children
+      has_many :children, class_name: "Mycelium", foreign_key: :mother_id, inverse_of: :mother
+      has_one :location
+      has_many :hypha
+      has_many :mushrooms
+      has_many :spores, through: :mushrooms
+      has_many :requests
 
-Single player - Could be turned into a multiplayer game with a many-to-many relationship between players and levels
+    </td>
+    <td>
+      :carbon
+      :sugar
+      :proteins
+      :nitrates
+    </td>
+  </tr>
+  <tr>
+    <td>
+      # Hyphae
+    </td>
+    <td>
+      belongs_to :mycelium
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      # Mushroom
+    </td>
+    <td>
+      belongs_to :mycelium
+      has_many :spores
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      # Tree
+    </td>
+    <td>
+      belongs_to :location
+      has_many :requests
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      # Request
+    </td>
+    <td>
+      belongs_to :tree
+      belongs_to :mycelium
+    </td>
+    <td>
+    </td>
+  </tr>
+</table>
 
-# Player
-has_many :mycelia
-name:
-
-# Level
-has_many :locations
-
-name:
-number:
-difficulty:
-
-includes a method which initialises the construction of a grid for each level
-
-# Location / GridSquare
-belongs_to :level
-has_one :mycelia
-has_one :tree
-
-- Validation - A location and only have one mycelia or tree.
-- Positions could be like a chess board, or an incrementing number on a grid. e.g.
-
-x-position
-y-position
-
-# Mycelium
-- belongs_to :location
-- has_many :hypha
-- has_many :mushrooms
-- has_many :spores, through :mushrooms
-- has_many :requests
-
-# Stores resources so must have a store for each resource
-
-carbon sugar proteins nitrates
-
-- first organism, first model to be created and spec'ed
-- has a "Find Neighbours" method which will allow allow for symbiosis between mycelia & neighbouring tree --
-- forms_symbiosis method allows to find a neighbouring tree and form association using << operator.
-- Can also make it so that all mycelia know about their original mycelia making it the "mothership" by having a hierarchy
-
-# Hyphae
-- Mine nutrients from the soil
-- Send nutrients C, N, P back to the stores in Mycelium
-- belongs_to :mycelium
-
-# Mushroom
-- belongs_to :mycelium
-- has_many :spores
-
-# Tree
-- belongs_to :location
-- has_many :requests
-
-- An original organism and primary vehicle for resource production.
-- Trees produce sugars without which mycelia cannot product mushrooms or spores and therefore cannot expand into new territory.
-
-# Request
-- Means by which we facilitate the many to many relationship between mycelia and trees.
-- Moves sugars and other resources between trees & mycelia.
-- belongs_to :tree
-- belongs_to :mycelium
 
 ## Turn Based Game ##
 You start off with a mycelium. Each turn your store of resources in the mycelia can be used to perform certain functions

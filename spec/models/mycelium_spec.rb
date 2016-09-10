@@ -1,11 +1,4 @@
-
-require 'standalone_migrations'
-require './models/player'
-require './spec/seed_data_helper'
-require 'rspec'
-require 'pry'
-
-ActiveRecord::Base.establish_connection YAML.load_file('config/database.yml')["test"]
+require './spec/spec_helper'
 
 describe Mycelium do
 
@@ -26,36 +19,45 @@ describe Mycelium do
   end
 
   context "creation of child" do
-    it "should know that it has a child" do
+    it "should know who its children are" do
+      @mycelium1.reload
       expect(@mycelium1.children.first).to eq(@mycelium3)
     end
 
-    it "should know that it has a mother" do
+    it "should know who its mother is" do
       expect(@mycelium3.mother).to eq(@mycelium1)
     end
 
     it "should know the location of it's child/mother on the grid" do
+      binding.pry
+      # TODO: THIS IS VERY STRANGE
       expect(@mycelium3.mother.location).to eq(@b4)
       expect(@mycelium1.children.first.location).to eq(@a2)
     end
 
   end
 
-  # context "Building Hypha (resource miners)" do
-  #   it "should be able to create hypha" do
-  #     expect(@mycelium1.hypha.count).to eq(0)
-  #     @mycelium1.build_hyphae
-  #     expect(@mycelium1.hypha.count).to eq(1)
-  #     expect(@mycelium.proteins).to eq(90)
-  #   end
-  #
-  #   it "should receive resources from hyphae and add them to it's resource stock" do
-  #
-  #   end
-  # end
+  context "Building Hypha (resource miners)" do
+    it "should be able to create hypha" do
+      expect(@mycelium1.hypha.count).to eq(0)
+      @mycelium1.build_hyphae
+      expect(@mycelium1.hypha.count).to eq(1)
+    end
 
-  after do
-    ActiveRecord::Base.connection.close
+    it "should cost proteins to build a hyphae" do
+      @mycelium1.build_hyphae
+      expect(@mycelium1.proteins).to eq(90)
+    end
+
+    it "should receive resources from hyphae and add them to it's resource stock" do
+      # TODO: As it stands we're not entirely sure what the purpose of the hypha
+      # is as we aren't yet sure how they interact with their environment
+    end
   end
+
+  it "should be able to view it's neighbours" do
+    expect(@mycelium1.display_neighbours).to include(@mycelium2)
+  end
+
 
 end

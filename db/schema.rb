@@ -10,15 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160909135441) do
+ActiveRecord::Schema.define(version: 20160910100320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "game_sessions", force: :cascade do |t|
+    t.integer "player_id"
+    t.integer "game_id"
+    t.index ["game_id"], name: "index_game_sessions_on_game_id", using: :btree
+    t.index ["player_id"], name: "index_game_sessions_on_player_id", using: :btree
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.integer "grid_size"
+  end
+
+  create_table "hypha", force: :cascade do |t|
+    t.integer "mycelium_id"
+    t.index ["mycelium_id"], name: "index_hypha_on_mycelium_id", using: :btree
+  end
+
   create_table "locations", force: :cascade do |t|
     t.integer "mycelium_id"
+    t.integer "game_id"
     t.string  "x_position"
     t.string  "y_position"
+    t.index ["game_id"], name: "index_locations_on_game_id", using: :btree
     t.index ["mycelium_id"], name: "index_locations_on_mycelium_id", using: :btree
   end
 
@@ -37,5 +55,9 @@ ActiveRecord::Schema.define(version: 20160909135441) do
     t.string "name"
   end
 
+  add_foreign_key "game_sessions", "games"
+  add_foreign_key "game_sessions", "players"
+  add_foreign_key "hypha", "mycelia"
+  add_foreign_key "locations", "games"
   add_foreign_key "mycelia", "players"
 end

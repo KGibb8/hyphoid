@@ -1,11 +1,4 @@
-
-require 'standalone_migrations'
-require './models/player'
-require './spec/seed_data_helper'
-require 'rspec'
-require 'pry'
-
-ActiveRecord::Base.establish_connection YAML.load_file('config/database.yml')["test"]
+require './spec/spec_helper'
 
 describe Player do
 
@@ -32,11 +25,9 @@ describe Player do
   end
 
   context "more than one mycelium" do
-    it "should know " do
-  end
+    it "should know the locations of all it's mycelia" do
 
-  after do
-    ActiveRecord::Base.connection.close
+    end
   end
 
 end

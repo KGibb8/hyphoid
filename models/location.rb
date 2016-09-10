@@ -1,9 +1,10 @@
 
+require './models/game_session'
 require './models/mycelium'
 
 class Location < ActiveRecord::Base
   belongs_to :mycelium, required: false
-  belongs_to :level
+  belongs_to :game
 
   validate :singular
 
