@@ -9,7 +9,7 @@ access normally inaccessible resources and connect all the trees in the forest.
 
 
 <p align="center">
-<img src="http://images.universityherald.com/data/images/full/5277/mycorrhizal-fungi.jpg" width="700"/>
+  <img src="http://images.universityherald.com/data/images/full/5277/mycorrhizal-fungi.jpg" width="700"/>
 </p>
 
 # Built using Active Record &amp; Rails
@@ -44,7 +44,7 @@ In the long run, a double stack grid system would work. Each "location" contains
       Relationships
     </td>
     <td>
-      Accessors
+      Accessors/Methods
     </td>
   </tr>
   <tr>
@@ -52,7 +52,7 @@ In the long run, a double stack grid system would work. Each "location" contains
       <b>Player</b>
     </td>
     <td>
-      has_many :player_sessions
+      has_many :player_sessions<br>
       has_many :mycelia
     </td>
     <td>
@@ -64,7 +64,7 @@ In the long run, a double stack grid system would work. Each "location" contains
       <b>PlayerSession</b>    
     </td>
     <td>
-      belongs_to :game_session
+      belongs_to :game_session<br>
       belongs_to :player
     </td>
     <td>
@@ -75,8 +75,8 @@ In the long run, a double stack grid system would work. Each "location" contains
       <b>GameSession</b>
     </td>
     <td>
-      has_many :player_sessions
-      has_many :locations
+      has_many :player_sessions<br>
+      has_many :locations<br>
       belongs_to :game
     </td>
     <td>
@@ -87,7 +87,7 @@ In the long run, a double stack grid system would work. Each "location" contains
       <b>Game</b>
     </td>
     <td>
-      has_many :player_sessions
+      has_many :player_sessions<br>
     </td>
     <td>
     </td>
@@ -97,12 +97,12 @@ In the long run, a double stack grid system would work. Each "location" contains
       <b>Location</b>
     </td>
     <td>
-      belongs_to :game_session
-      has_one :mycelia
+      belongs_to :game_session<br>
+      has_one :mycelia<br>
       has_one :tree
     </td>
     <td>
-      :x-position
+      :x-position<br>
       :y-position
     </td>
   </tr>
@@ -111,19 +111,19 @@ In the long run, a double stack grid system would work. Each "location" contains
       <b>Mycelium</b>
     </td>
     <td>
-      belongs_to :player
-      belongs_to :mother, class_name: "Mycelium", foreign_key: :mother_id, inverse_of: :children
-      has_many :children, class_name: "Mycelium", foreign_key: :mother_id, inverse_of: :mother
-      has_one :location
-      has_many :hypha
-      has_many :mushrooms
-      has_many :spores, through: :mushrooms
+      belongs_to :player<br>
+      belongs_to :mother, class_name: "Mycelium", foreign_key: :mother_id, inverse_of: :children<br>
+      has_many :children, class_name: "Mycelium", foreign_key: :mother_id, inverse_of: :mother<br>
+      has_one :location<br>
+      has_many :hypha<br>
+      has_many :mushrooms<br>
+      has_many :spores, through: :mushrooms<br>
       has_many :requests
     </td>
     <td>
-      :carbon
-      :sugar
-      :proteins
+      :carbon<br>
+      :sugar<br>
+      :proteins<br>
       :nitrates
     </td>
   </tr>
@@ -142,7 +142,7 @@ In the long run, a double stack grid system would work. Each "location" contains
       <b>Mushroom</b>
     </td>
     <td>
-      belongs_to :mycelium
+      belongs_to :mycelium<br>
       has_many :spores
     </td>
     <td>
@@ -153,7 +153,7 @@ In the long run, a double stack grid system would work. Each "location" contains
       <b>Tree</b>
     </td>
     <td>
-      belongs_to :location
+      belongs_to :location<br>
       has_many :requests
     </td>
     <td>
@@ -164,7 +164,7 @@ In the long run, a double stack grid system would work. Each "location" contains
       <b>Request</b>
     </td>
     <td>
-      belongs_to :tree
+      belongs_to :tree<br>
       belongs_to :mycelium
     </td>
     <td>
