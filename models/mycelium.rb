@@ -19,20 +19,18 @@ class Mycelium < ActiveRecord::Base
 
   # validate :singular
 
-  # def initialize
-  #   self.carbon = 100
-  #   self.sugars = 100
-  #   self.proteins = 100
-  #   self.nitrates = 100
-  # end
-
   def resources
     {carbon: self.carbon, sugars: self.sugars, proteins: self.proteins, nitrates: self.nitrates}
   end
 
   def build_hypha
     self.hyphae.create
-    self.proteins -= 10
+  end
+
+  def mine
+    self.hyphae.each do |hypha|
+      hypha.mine
+    end
   end
 
   def find_neighbours
@@ -52,6 +50,7 @@ class Mycelium < ActiveRecord::Base
             grid[row_index - 1][position_index] # North
           ]
           neighbours = neighbours.reject {|neighbour| neighbour.mycelium.nil? }
+          # TODO : When we add the Tree model, we want this method to also return Trees in the neighbours array
         end
       end
     end
@@ -61,9 +60,13 @@ class Mycelium < ActiveRecord::Base
   private
 
   def singular
-    unless Location.find_by(mycelium: self).nil?
+    # We're attempting to check if we have a location before we have been set a location
+    unless self.location.nil?
       self.errors.add(:location, "A Mycelium cannot occupy more than one location")
     end
+    # unless Location.find_by(mycelium: self).nil?
+    #   self.errors.add(:location, "A Mycelium cannot occupy more than one location")
+    # end
   end
 
   # TODO: How does fulfilment of a request work?

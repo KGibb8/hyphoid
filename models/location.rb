@@ -11,6 +11,7 @@ class Location < ActiveRecord::Base
   private
 
   # def singular
+
   #   unless Mycelium.find_by(location: self)
   #     self.errors.add(:location, "A Mycelium cannot occupy more than one location")
   #   end

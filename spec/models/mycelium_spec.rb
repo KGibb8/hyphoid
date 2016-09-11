@@ -24,7 +24,7 @@ describe Mycelium do
 
   context "creation of child" do
     it "should know who its children are" do
-      expect(@mycelium1.children.first).to eq(@mycelium3)
+      expect(@mycelium1.children).to include(@mycelium3)
     end
 
     it "should know who its mother is" do
@@ -32,28 +32,28 @@ describe Mycelium do
     end
 
     it "should know the location of its child/mother on the grid" do
-      # TODO: THIS IS VERY STRANGE
-      expect(@mycelium3.mother.location).to eq(@b4)
-      expect(@mycelium1.children.first.location).to eq(@a2)
+      expect(@mycelium3.mother.location).to eq(@game1.grid[1][3])
+      expect(@mycelium1.children.first.location).to eq(@game1.grid[0][1])
     end
 
   end
 
   context "Building Hyphae (resource miners)" do
     it "should be able to create hypha" do
-      expect(@mycelium1.hyphae.count).to eq(0)
-      @mycelium1.build_hypha
       expect(@mycelium1.hyphae.count).to eq(1)
     end
 
     it "should cost proteins to build a hypha" do
-      @mycelium1.build_hypha
       expect(@mycelium1.proteins).to eq(90)
     end
 
     it "should receive resources from hyphae and add them to it's resource stock" do
-      # TODO: As it stands we're not entirely sure what the purpose of the hypha
-      # is as we aren't yet sure how they interact with their environment
+      @mycelium1.build_hypha
+      @mycelium1.build_hypha
+      @mycelium1.build_hypha
+      @mycelium1.build_hypha
+      @mycelium1.mine
+      expect(@mycelium1.resources).to eq({carbon: 125, sugars: 50, proteins: 75, nitrates: 125})
     end
   end
 
