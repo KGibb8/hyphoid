@@ -7,7 +7,7 @@ class Game < ActiveRecord::Base
 
   attr_accessor :grid
 
-  def initialize_grid
+  def initialize_grid(grid_size)
     x_grid = (1..self.grid_size).to_a
     y_grid = (1..self.grid_size).to_a
     grid = Array.new

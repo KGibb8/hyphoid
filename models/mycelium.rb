@@ -30,20 +30,19 @@ class Mycelium < ActiveRecord::Base
 
   def display_neighbours
     neighbours = []
-    grid = self.location.game.grid
-    # grid = self.player.games.first.grid # WILL ONLY WORK WITH FIRST GAME
+    grid = self.location.game_session.grid
     grid.each_with_index do |row, row_count|
       row.each_with_index do |position, position_count|
         if (self.location.x_position && self.location.y_position) == (position.x_position && position.y_position)
           neighbours = [
-            grid[row_count-1][position_count-1], # Northwest
-            grid[row_count][position_count-1], # West
-            grid[row_count+1][position_count-1], # Southwest
-            grid[row_count+1][position_count], # South
-            grid[row_count+1][position_count+1], # Southeast
-            grid[row_count][position_count+1], # East
-            grid[row_count-1][position_count+1], #Northeast
-            grid[row_count-1][position_count] # North
+            grid[row_count - 1][position_count - 1], # Northwest
+            grid[row_count][position_count - 1], # West
+            grid[row_count + 1][position_count - 1], # Southwest
+            grid[row_count + 1][position_count], # South
+            grid[row_count + 1][position_count + 1], # Southeast
+            grid[row_count][position_count + 1], # East
+            grid[row_count - 1][position_count + 1], #Northeast
+            grid[row_count - 1][position_count] # North
           ]
           neighbours.reject {|neighbour| neighbour.mycelium.nil? }
         end

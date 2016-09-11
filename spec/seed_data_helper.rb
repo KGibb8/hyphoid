@@ -7,26 +7,30 @@ module SeedData
       Hyphae.destroy_all
       Location.destroy_all
       Mycelium.destroy_all
-      GameSession.destroy_all
+      PlayerSession.destroy_all
       Player.destroy_all
+      GameSession.destroy_all
       Game.destroy_all
 
       binding.pry
+
+      # Game Abstract - Rules
+      @rules = Game.create
 
       # Players
       @player1 = Player.create(name: "Mycophile")
       @player2 = Player.create(name: "Dendrophile")
 
-      binding.pry
+      # Instance of a Game
+      @game = GameSession.create(grid_size: 5)
 
-      @game = Game.create(grid_size: 5)
-      GameSession.create(player: @player1, game: @game)
-      GameSession.create(player: @player2, game: @game)
+      # Adding players to single GameSession
+      @game.player_sessions.create(player: @player1)
+      @game.player_sessions.create(player: @player2)
       # @game.players.count == 2
-
-      binding.pry
       # Now in theory we can do @player1.games.first == @game
       # We can also do @game.grid which contains all of our location objects in their correct position
+
       @mycelium1 = @player1.mycelia.create(carbon: 100, sugars: 100, proteins: 100, nitrates: 100)
       @mycelium2 = @player1.mycelia.create(carbon: 100, sugars: 100, proteins: 100, nitrates: 100)
 
