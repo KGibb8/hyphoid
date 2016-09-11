@@ -8,11 +8,13 @@ describe Mycelium do
 
   context "on creation of any one mycelium" do
     it "should occupy a location" do
-      expect(@mycelium1.location).to eq(@b4)
+      expect(@mycelium1.location).to eq(@game.grid[1][3])
     end
 
     it "should not be able to occupy more than one location" do
-      @b1.update(mycelium: @mycelium1)
+      binding.pry
+      @game.grid[1][0].update(mycelium: @mycelium1)
+      binding.pry
       expect(@mycelium1.errors.messages.keys).to include(:location)
       expect(@mycelium1.errors.messages[:location]).equal?(["A Mycelium cannot occupy more than one location"])
     end
