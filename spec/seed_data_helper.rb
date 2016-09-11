@@ -9,11 +9,7 @@ module SeedData
       Mycelium.destroy_all
       PlayerSession.destroy_all
       Player.destroy_all
-      GameSession.destroy_all
       Game.destroy_all
-
-      # Game Abstract - Rules
-      @rules = Game.create
 
       # Players
       @player1 = Player.create(name: "Mycophile")
@@ -29,10 +25,10 @@ module SeedData
       @player11 = Player.create(name: "Mr Rabbit")
 
       # GameSession 1
-      @game1 = @rules.game_sessions.create(grid_size: 5)
+      @game1 = Game.create(grid_size: 5)
 
       # GameSession 2
-      @game2 = @rules.game_sessions.create(grid_size: 10)
+      @game2 = Game.create(grid_size: 10)
 
       # Adding players to GameSession 1
       @game1.player_sessions.create(player: @player1)
@@ -48,10 +44,9 @@ module SeedData
 ################################################################################
 
       # New game starts upon players joining @game1 - GameSession initialises grid
-      @game1.draw_map
-      @game2.draw_map
-
-      binding.pry
+      @game1.initialize_grid
+      @game2.initialize_grid
+      # No players can now join the game
 
       # @player1 building Mycelia
       @mycelium1 = @player1.mycelia.create(carbon: 100, sugars: 100, proteins: 100, nitrates: 100)
@@ -65,6 +60,7 @@ module SeedData
       @game1.grid[1][3].update(mycelium: @mycelium1)
       @game1.grid[0][1].update(mycelium: @mycelium3)
 
+      binding.pry
 
 
 

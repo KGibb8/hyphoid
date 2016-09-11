@@ -1,8 +1,8 @@
 require './models/player'
-require './models/game_session'
+require './models/game'
 
 class PlayerSession < ActiveRecord::Base
   belongs_to :player
-  belongs_to :game_session
+  belongs_to :game
 
 end

@@ -1,12 +1,13 @@
 require './spec/spec_helper'
 
-describe GameSession do
+describe Game do
 
   before do
     extend SeedData
   end
 
   it "should be able to see all participating players" do
+    expect(@game1.players.map(&:name)).to eq(["Mycophile", "Dendrophile"])
     expect(@game1.players.count).to eq(2)
     expect(@game2.players.count).to eq(4)
   end

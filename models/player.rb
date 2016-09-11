@@ -2,7 +2,7 @@ require './models/mycelium'
 
 class Player < ActiveRecord::Base
   has_many :mycelia
-  has_many :game_sessions
+  has_many :player_sessions
   # has_many :hypha through: :mycelium
   # has_many :mushrooms through: :mycelium
   # has_many :spores through: :mushroom

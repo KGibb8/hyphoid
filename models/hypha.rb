@@ -1,9 +1,9 @@
 ActiveSupport::Inflector.inflections(:en) do |inflect|
-  inflect.irregular 'hyphae', 'hypha'
+  inflect.irregular 'hypha', 'hyphae'
 end
 
 require './models/mycelium'
 
-class Hyphae < ActiveRecord::Base
+class Hypha < ActiveRecord::Base
   belongs_to :mycelium
 end

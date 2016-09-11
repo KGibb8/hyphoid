@@ -1,7 +1,7 @@
 
 require './models/player'
 require './models/location'
-require './models/hyphae'
+require './models/hypha'
 require './models/mushroom'
 require './models/spore'
 require 'pry'
@@ -13,7 +13,7 @@ class Mycelium < ActiveRecord::Base
   belongs_to :mother, class_name: "Mycelium", foreign_key: :mother_id, inverse_of: :children
   has_many :children, class_name: "Mycelium", foreign_key: :mother_id, inverse_of: :mother
   has_one :location
-  has_many :hypha
+  has_many :hyphae
   has_many :mushrooms
   has_many :spores, through: :mushrooms
 
@@ -23,16 +23,17 @@ class Mycelium < ActiveRecord::Base
     {carbon: self.carbon, sugars: self.sugars, proteins: self.proteins, nitrates: self.nitrates}
   end
 
-  def build_hyphae
-    self.hypha.create
+  def build_hypha
+    self.hyphae.create
     self.proteins -= 10
   end
 
-  def display_neighbours
+  def find_neighbours
     neighbours = []
     grid = self.location.game_session.grid
     grid.each_with_index do |row, row_count|
       row.each_with_index do |position, position_count|
+        # TODO : (self.location.x_position == position.x_position) && (self.location.y_position == position.y_position)
         if (self.location.x_position && self.location.y_position) == (position.x_position && position.y_position)
           neighbours = [
             grid[row_count - 1][position_count - 1], # Northwest
@@ -51,11 +52,13 @@ class Mycelium < ActiveRecord::Base
     neighbours
   end
 
-
   private
 
   def singular
-    unless self.location.nil?
+    # unless self.location.nil?
+    #   self.errors.add(:location, "A Mycelium cannot occupy more than one location")
+    # end
+    unless Location.find_by(mycelium: self).nil?
       self.errors.add(:location, "A Mycelium cannot occupy more than one location")
     end
   end

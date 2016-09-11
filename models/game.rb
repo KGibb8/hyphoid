@@ -1,22 +1,26 @@
-
-require './models/game_session'
 require './models/location'
+require './models/player_session'
+require './models/game'
 
 class Game < ActiveRecord::Base
-  has_many :game_sessions
+  has_many :player_sessions
+  has_many :locations
+  has_many :players, through: :player_sessions
 
-  def initialize_grid(grid_size)
-    x_grid = (1..grid_size).to_a
-    y_grid = (1..grid_size).to_a
-    grid = Array.new
+  attr_accessor :grid
+
+  def initialize_grid
+    x_grid = (1..self.grid_size).to_a
+    y_grid = (1..self.grid_size).to_a
+    @grid = Array.new
     x_grid.each do |x|
       axis = Array.new
       y_grid.each do |y|
-        axis << Location.create(x_position: x, y_position: y)
+        axis << self.locations.create(x_position: x, y_position: y)
       end
-      grid << axis
+      @grid << axis
     end
-    grid
+    @grid
   end
 
 end

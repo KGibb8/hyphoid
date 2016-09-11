@@ -39,14 +39,14 @@ describe Mycelium do
 
   end
 
-  context "Building Hypha (resource miners)" do
+  context "Building Hyphae (resource miners)" do
     it "should be able to create hypha" do
       expect(@mycelium1.hypha.count).to eq(0)
       @mycelium1.build_hyphae
       expect(@mycelium1.hypha.count).to eq(1)
     end
 
-    it "should cost proteins to build a hyphae" do
+    it "should cost proteins to build a hypha" do
       @mycelium1.build_hyphae
       expect(@mycelium1.proteins).to eq(90)
     end
