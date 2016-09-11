@@ -17,7 +17,14 @@ class Mycelium < ActiveRecord::Base
   has_many :mushrooms
   has_many :spores, through: :mushrooms
 
-  validate :singular
+  # validate :singular
+
+  # def initialize
+  #   self.carbon = 100
+  #   self.sugars = 100
+  #   self.proteins = 100
+  #   self.nitrates = 100
+  # end
 
   def resources
     {carbon: self.carbon, sugars: self.sugars, proteins: self.proteins, nitrates: self.nitrates}
@@ -30,34 +37,30 @@ class Mycelium < ActiveRecord::Base
 
   def find_neighbours
     neighbours = []
-    grid = self.location.game_session.grid
-    grid.each_with_index do |row, row_count|
-      row.each_with_index do |position, position_count|
-        # TODO : (self.location.x_position == position.x_position) && (self.location.y_position == position.y_position)
-        if (self.location.x_position && self.location.y_position) == (position.x_position && position.y_position)
+    grid = self.location.game.grid
+    grid.each_with_index do |row, row_index|
+      row.each_with_index do |position, position_index|
+        if (self.location.x_position == position.x_position) && (self.location.y_position == position.y_position)
           neighbours = [
-            grid[row_count - 1][position_count - 1], # Northwest
-            grid[row_count][position_count - 1], # West
-            grid[row_count + 1][position_count - 1], # Southwest
-            grid[row_count + 1][position_count], # South
-            grid[row_count + 1][position_count + 1], # Southeast
-            grid[row_count][position_count + 1], # East
-            grid[row_count - 1][position_count + 1], #Northeast
-            grid[row_count - 1][position_count] # North
+            grid[row_index - 1][position_index - 1], # Northwest
+            grid[row_index][position_index - 1], # West
+            grid[row_index + 1][position_index - 1], # Southwest
+            grid[row_index + 1][position_index], # South
+            grid[row_index + 1][position_index + 1], # Southeast
+            grid[row_index][position_index + 1], # East
+            grid[row_index - 1][position_index + 1], #Northeast
+            grid[row_index - 1][position_index] # North
           ]
-          neighbours.reject {|neighbour| neighbour.mycelium.nil? }
+          neighbours = neighbours.reject {|neighbour| neighbour.mycelium.nil? }
         end
       end
     end
-    neighbours
+    neighbours.map(&:mycelium)
   end
 
   private
 
   def singular
-    # unless self.location.nil?
-    #   self.errors.add(:location, "A Mycelium cannot occupy more than one location")
-    # end
     unless Location.find_by(mycelium: self).nil?
       self.errors.add(:location, "A Mycelium cannot occupy more than one location")
     end

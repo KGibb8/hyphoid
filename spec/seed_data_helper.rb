@@ -4,7 +4,7 @@ module SeedData
   def self.extended(object)
     object.instance_exec do
 
-      Hyphae.destroy_all
+      Hypha.destroy_all
       Location.destroy_all
       Mycelium.destroy_all
       PlayerSession.destroy_all
@@ -49,21 +49,19 @@ module SeedData
       # No players can now join the game
 
       # @player1 building Mycelia
-      @mycelium1 = @player1.mycelia.create(carbon: 100, sugars: 100, proteins: 100, nitrates: 100)
-      @mycelium2 = @player1.mycelia.create(carbon: 100, sugars: 100, proteins: 100, nitrates: 100)
+      @mycelium1 = @player1.mycelia.create
+      @mycelium2 = @player1.mycelia.create
 
-      # Can we have resources initialize as a base minimum?
-      @mycelium3 = @mycelium1.children.create(carbon: 100, sugars: 100, proteins: 100, nitrates: 100)
-      # Check - does mycelium3 belong to @player1?
+      # @player1's first mycelium spawning a new child
+      @mycelium3 = @player1.mycelia.create(mother: @mycelium1)
 
       # Sets location of mycelium
       @game1.grid[1][3].update(mycelium: @mycelium1)
+      @game1.grid[2][3].update(mycelium: @mycelium2)
       @game1.grid[0][1].update(mycelium: @mycelium3)
 
-      binding.pry
-
-
-
+      # Sets location of new child
+      # @game1.grid[2][4].update(mycelium: @mycelium3)
 
     end
   end

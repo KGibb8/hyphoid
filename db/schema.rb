@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160910100320) do
+ActiveRecord::Schema.define(version: 20160911162203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(version: 20160910100320) do
     t.integer "grid_size"
   end
 
-  create_table "hypha", force: :cascade do |t|
+  create_table "hyphae", force: :cascade do |t|
     t.integer "mycelium_id"
-    t.index ["mycelium_id"], name: "index_hypha_on_mycelium_id", using: :btree
+    t.index ["mycelium_id"], name: "index_hyphae_on_mycelium_id", using: :btree
   end
 
   create_table "locations", force: :cascade do |t|
@@ -36,10 +36,10 @@ ActiveRecord::Schema.define(version: 20160910100320) do
   create_table "mycelia", force: :cascade do |t|
     t.integer "player_id"
     t.integer "mother_id"
-    t.integer "carbon"
-    t.integer "nitrates"
-    t.integer "proteins"
-    t.integer "sugars"
+    t.integer "carbon",    default: 100
+    t.integer "nitrates",  default: 100
+    t.integer "proteins",  default: 100
+    t.integer "sugars",    default: 50
     t.index ["mother_id"], name: "index_mycelia_on_mother_id", using: :btree
     t.index ["player_id"], name: "index_mycelia_on_player_id", using: :btree
   end
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20160910100320) do
     t.string "name"
   end
 
-  add_foreign_key "hypha", "mycelia"
+  add_foreign_key "hyphae", "mycelia"
   add_foreign_key "locations", "games"
   add_foreign_key "mycelia", "players"
   add_foreign_key "player_sessions", "games"
