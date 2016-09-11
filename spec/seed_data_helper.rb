@@ -28,17 +28,32 @@ module SeedData
       @player10 = Player.create(name: "Mr Fieldmouse")
       @player11 = Player.create(name: "Mr Rabbit")
 
-      # Instance of a Game
-      @game = @rules.game_sessions.create(grid_size: 5)
+      # GameSession 1
+      @game1 = @rules.game_sessions.create(grid_size: 5)
 
-      # Adding players to single GameSession
-      @game.player_sessions.create(player: @player1)
-      @game.player_sessions.create(player: @player2)
+      # GameSession 2
+      @game2 = @rules.game_sessions.create(grid_size: 10)
 
-      # Game starts upon players joining game - GameSession initialises grid
-      @game.draw_map
+      # Adding players to GameSession 1
+      @game1.player_sessions.create(player: @player1)
+      @game1.player_sessions.create(player: @player2)
 
-      # Player building Mycelia
+      # Adding players to GameSession 2
+      @game2.player_sessions.create(player: @player3)
+      @game2.player_sessions.create(player: @player4)
+      @game2.player_sessions.create(player: @player5)
+      @game2.player_sessions.create(player: @player6)
+
+################################################################################
+################################################################################
+
+      # New game starts upon players joining @game1 - GameSession initialises grid
+      @game1.draw_map
+      @game2.draw_map
+
+      binding.pry
+
+      # @player1 building Mycelia
       @mycelium1 = @player1.mycelia.create(carbon: 100, sugars: 100, proteins: 100, nitrates: 100)
       @mycelium2 = @player1.mycelia.create(carbon: 100, sugars: 100, proteins: 100, nitrates: 100)
 
@@ -47,8 +62,8 @@ module SeedData
       # Check - does mycelium3 belong to @player1?
 
       # Sets location of mycelium
-      @game.grid[1][3].update(mycelium: @mycelium1)
-      @game.grid[0][1].update(mycelium: @mycelium3)
+      @game1.grid[1][3].update(mycelium: @mycelium1)
+      @game1.grid[0][1].update(mycelium: @mycelium3)
 
 
 
